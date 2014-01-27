@@ -1,0 +1,51 @@
+{
+    "manifest_version": 2,
+    "name": "ClienD extension",
+    "short_name": "ClienD-ext",
+    "description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
+    "version": "1.0",
+    "author": "atnartur",
+    
+    "icons": {
+        "19": "images/logo2-19.png",
+        "38": "images/logo38.png",
+        "48": "images/logo48.png",
+        "144": "images/logo144.png"
+    },
+    
+    "browser_action": {
+        "default_icon": {
+            "19": "images/logo2-19.png",
+            "38": "images/logo38.png"            // optional
+        },
+        "default_title": "ClienD extension"      // optional; shown in tooltip
+        //"default_popup": "popup.html"        // optional
+    },
+    
+	"permissions": [
+        "tabs",
+		"http://edu.tatar.ru/*",
+		"https://edu.tatar.ru/*",
+        "https://wifiauth.tatar.ru/*",
+		"http://wifiauth.tatar.ru/*"
+	],
+    "background": {
+        "scripts": ["js/bg.js"]
+    }
+    /*"content_scripts": [{
+        "matches": [
+			"http://edu.tatar.ru/*",
+            "https://edu.tatar.ru/*",
+            "https://wifiauth.tatar.ru/*",
+            "http://wifiauth.tatar.ru/*"
+		]
+        "js": [
+			"/js/jquery.min.js",
+			"/js/page.js"
+		],
+		"css": [
+			"/styles/style.css"
+		],
+    	"run_at": "document_end"
+    }]*/
+}
