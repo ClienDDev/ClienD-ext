@@ -27,7 +27,9 @@
 		"http://edu.tatar.ru/*",
 		"https://edu.tatar.ru/*",
         "https://wifiauth.tatar.ru/*",
-		"http://wifiauth.tatar.ru/*"
+		"http://wifiauth.tatar.ru/*",
+        "http://cliend.ru/*",
+        "http://dev.cliend.ru/*"
 	],
     "background": {
         "scripts": ["js/bg.js"]
@@ -53,6 +55,12 @@
         "images/logo38.png",
         "images/logo48.png",
         "images/logo144.png",
-        "/styles/cliend.ru-base.min.css"
+        
+        "/styles/cliend.ru-base.min.css",
+        "/styles/fonts.css",
+        
+        "/fonts/OpenSans300.ttf",
+        "/fonts/OpenSans400.ttf",
+        "/fonts/OpenSans700.ttf"
     ]
 }
