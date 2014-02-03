@@ -34,22 +34,20 @@
     "background": {
         "scripts": ["js/bg.js"]
     },
-    /*"content_scripts": [{
+    "content_scripts": [{
         "matches": [
 			"http://edu.tatar.ru/*",
             "https://edu.tatar.ru/*",
             "https://wifiauth.tatar.ru/*",
-            "http://wifiauth.tatar.ru/*"
-		]
+            "http://wifiauth.tatar.ru/*",
+            "http://cliend.ru/*"
+		],
         "js": [
 			"/js/jquery.min.js",
-			"/js/page.js"
-		],
-		"css": [
-			"/styles/style.css"
+			"/js/sites.js"
 		],
     	"run_at": "document_end"
-    }]*/
+    }],
     "web_accessible_resources": [
         "images/logo19.png",
         "images/logo38.png",
@@ -58,6 +56,13 @@
         
         "/styles/cliend.ru-base.min.css",
         "/styles/fonts.css",
+        "/styles/sites.min.css",
+        
+        "/styles/sites.less",
+        
+        "/js/jquery.min.js",
+        "/js/less.min.js",
+        "/js/sites.js",
         
         "/fonts/OpenSans300.ttf",
         "/fonts/OpenSans400.ttf",
