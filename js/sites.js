@@ -25,7 +25,7 @@ cliend_ext.edutatar.styles_init = function() {
 cliend_ext.edutatar.html_init = function(){
     jQuery('body').append('<div id="cliend">'+
                             '<div id="cliend_container">'+
-                                '<h1>ClienD</h1>'+
+                                '<h1><a href="http://cliend.ru" target="_blank">ClienD</a></h1>'+
                                 '<p class="cliend_message" id="cliend_message"></p>'+
                             '</div>'+
                         '</div>');
@@ -42,17 +42,57 @@ cliend_ext.edutatar.msg = function(text){
 }
 
 
-cliend_ext.edutatar.page = {}
-
-
 /**
- * Инициализация функций на разных страницах
+ * Проверка авторизации
+ *
+ * @param {function} callback Callback функция
 */
-cliend_ext.edutatar.page.init = function(){
-    
+cliend_ext.edutatar.check_auth = function(callback){
+    $.ajax({ 
+        type: 'GET',
+        url: "/",
+        success: function(msg, status, response){
+            if (response.status == 200) { // если авторизация успешна
+                callback(true); // возвращаем true
+            }
+            else{ 
+                callback(false); // иначе - false
+            }
+        }
+    });         
 }
 
 
+cliend_ext.edutatar.fixes = {} // фиксы
+
+
+cliend_ext.edutatar.fixes.init = function(){
+    var url = document.location.href;
+    
+    // Web auth redirect
+    if( 
+        (url.indexOf('switch_url=https://wifiauth.tatar.ru/login.html') !== -1) ||
+        (url.indexOf('switch_url=http://wifiauth.tatar.ru/login.html') !== -1)
+    ){
+        cliend_ext.edutatar.fixes.web_auth_redir();
+    }
+}
+
+
+/**
+ * Web auth redirect
+*/
+cliend_ext.edutatar.fixes.web_auth_redir = function(){
+    cliend_ext.edutatar.msg('Исправление ошибки входа. Пожалуйста подождите...'); 
+    cliend_ext.edutatar.check_auth(function(status){
+        if (status === true) { // если авторизация успешна
+            document.location.href = '/'; // на страницу профиля
+        }
+        else{
+            document.location.href = '/logon'; // иначе на страницу входа
+        }
+    });
+}
 
 
 
@@ -65,6 +105,7 @@ jQuery(document).ready(function(){
         cliend_ext.edutatar.styles_init();
         cliend_ext.edutatar.html_init();
         cliend_ext.edutatar.msg('хорошей работы!');
+        cliend_ext.edutatar.fixes.init();
     }
     else if (document.location.href.indexOf('cliend.ru') > 1) {
         
