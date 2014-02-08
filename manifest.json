@@ -64,8 +64,8 @@
         "/js/less.min.js",
         "/js/sites.js",
         
-        "/fonts/OpenSans300.ttf",
-        "/fonts/OpenSans400.ttf",
-        "/fonts/OpenSans700.ttf"
+        "/fonts/Roboto100.woff",
+        "/fonts/Roboto300.woff",
+        "/fonts/Roboto700.woff"
     ]
 }
