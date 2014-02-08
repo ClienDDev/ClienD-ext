@@ -14,7 +14,7 @@ cliend_ext.edutatar.styles_init = function() {
         jQuery('#cliend').css('display','block');
     }
     else{
-        jQuery('head').append('<link rel="stylesheet" href="'+chrome.extension.getURL('/styles/sites.min.css')+'">');
+        jQuery('head').append('<link rel="stylesheet" href="'+chrome.extension.getURL('/styles/sites.css')+'">');
     }
 }
 
@@ -24,8 +24,10 @@ cliend_ext.edutatar.styles_init = function() {
 */
 cliend_ext.edutatar.html_init = function(){
     jQuery('body').append('<div id="cliend">'+
+                            '<div id="cliend_container">'+
                                 '<h1>ClienD</h1>'+
                                 '<p class="cliend_message" id="cliend_message"></p>'+
+                            '</div>'+
                         '</div>');
 }
 
