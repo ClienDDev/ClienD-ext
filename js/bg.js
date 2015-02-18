@@ -1,13 +1,22 @@
-var cliend = {}
-
-cliend.store = {}
-
-
-
-/*chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-    console.log(response.farewell);
-});*/
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    
-    console.log('message: ', request);
+chrome.runtime.onInstalled.addListener(function() {
+    // Replace all rules ...
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+      // With a new rule ...
+        chrome.declarativeContent.onPageChanged.addRules([
+            {
+                // That fires when a page's URL contains a 'g' ...
+                conditions: [
+                    new chrome.declarativeContent.PageStateMatcher({
+                        pageUrl: {
+                            urlContains: 'edu.tatar.ru'
+                        }
+                    })
+                ],
+                // And shows the extension's page action.
+                actions: [
+                    new chrome.declarativeContent.ShowPageAction()
+                ]
+            }
+        ]);
+    });
 });

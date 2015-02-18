@@ -12,18 +12,19 @@
         "48": "images/logo48.png",
         "144": "images/logo144.png"
     },
-    
-    "browser_action": {
+    //"browser_action": {
+    "page_action": {
         "default_icon": {
             "19": "images/logo19.png",
             "38": "images/logo38.png"            // optional
         },
-        "default_title": "ClienD extension",      // optional; shown in tooltip
-        "default_popup": "pages/popup.html"        // optional
+        "default_title": "ClienD улучшил эту страницу"      // optional; shown in tooltip
+        //"default_popup": "pages/popup.html"        // optional
     },
     
 	"permissions": [
         "tabs",
+        "declarativeContent",
 		"http://edu.tatar.ru/*",
 		"https://edu.tatar.ru/*",
         "https://wifiauth.tatar.ru/*",
@@ -34,20 +35,35 @@
     "background": {
         "scripts": ["js/bg.js"]
     },
-    "content_scripts": [{
-        "matches": [
-			"http://edu.tatar.ru/*",
-            "https://edu.tatar.ru/*",
-            "https://wifiauth.tatar.ru/*",
-            "http://wifiauth.tatar.ru/*",
-            "http://cliend.ru/*"
-		],
-        "js": [
-			"/js/jquery.min.js",
-			"/js/sites.js"
-		],
-    	"run_at": "document_end"
-    }],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://edu.tatar.ru/*",
+                "https://edu.tatar.ru/*",
+                "https://wifiauth.tatar.ru/*",
+                "http://wifiauth.tatar.ru/*",
+                "http://cliend.ru/*"
+            ],
+            "js": [
+                "/js/libs/jquery.min.js",
+                "/js/sites.js"
+            ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "https://edu.tatar.ru/admin/page/simple_page",
+                "http://edu.tatar.ru/admin/page/simple_page"
+            ],
+            "js": [
+                "/js/libs/jquery.min.js",
+                "/js/libs/jquery.fastLiveFilter.min.js",
+                "/js/libs/async.min.js",
+                "/js/fixtures/admin/page/simple_pages.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
     "web_accessible_resources": [
         "images/logo19.png",
         "images/logo38.png",
