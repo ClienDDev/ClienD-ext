@@ -1,4 +1,24 @@
 $(document).ready(function(){
+    if (document.location.search.indexOf('page') !== -1) {
+        document.location.href = 'https://edu.tatar.ru/admin/page/simple_page';
+        return false;
+    }
+    
+    // переводим TD в TH для нормальной работы DataTables
+    $('table thead tr td').each(function(){
+        var thisTD = this;
+        var newElement = $("<th></th>");
+        $.each(this.attributes, function(index) {
+          $(newElement).attr(thisTD.attributes[index].name, thisTD.attributes[index].value);
+        });
+        $(newElement).html($(thisTD).html());
+        $(newElement).css('background-color', '#EEEEEE');
+        $(this).after(newElement).remove();
+    })
+    
+    cliend_include_style(chrome.extension.getURL("styles/libs/jquery.dataTables.min.css"));
+    cliend_include_style(chrome.extension.getURL("styles/fixtures/admin/page/simple_pages.css"));
+    
     var functions = [];
     var pages = {};
     
@@ -22,7 +42,19 @@ $(document).ready(function(){
             $('#contentwrap table.table tbody').append(html);
         }
         $('#contentwrap .pages').hide();
-        $('#contentwrap table.table thead tr td:eq(0)').append('<input type="text" size="30" placeholder="Поиск" style="float:right">');
-        $('#contentwrap table.table thead tr td:eq(0) input').fastLiveFilter('#contentwrap table.table tbody');
+        $('#contentwrap .pages:eq(0)').after('<input type="text" id="table_search" placeholder="Поиск по страницам">');
+        $('#table_search').fastLiveFilter('#contentwrap table.table tbody');
+        
+        // сортировка таблицы
+        $('table.table').DataTable({
+            searching: false, // убрали поиск
+            aaSorting: [], // убрали сортировку сразу после загрузки
+            language: {
+                url: chrome.extension.getURL("js/libs/dataTables/Russian.json")
+            },
+            paging:false
+        });
     });
+    
+    return true;
 })

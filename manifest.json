@@ -3,7 +3,7 @@
     "name": "ClienD extension",
     "short_name": "ClienD-ext",
     "description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
-    "version": "1.0",
+    "version": "1.0.1",
     "author": "atnartur",
     
     "icons": {
@@ -52,36 +52,36 @@
         },
         {
             "matches": [
-                "https://edu.tatar.ru/admin/page/simple_page",
-                "http://edu.tatar.ru/admin/page/simple_page"
+                "https://edu.tatar.ru/admin/page/simple_page*",
+                "http://edu.tatar.ru/admin/page/simple_page*"
             ],
             "js": [
                 "/js/libs/jquery.min.js",
+                "/js/libs/dataTables/jquery.dataTables.min.js",
                 "/js/libs/jquery.fastLiveFilter.min.js",
                 "/js/libs/async.min.js",
+                "/js/fixtures/base.js",
                 "/js/fixtures/admin/page/simple_pages.js"
+            ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "https://edu.tatar.ru/admin/page/edit/*",
+                "http://edu.tatar.ru/admin/page/edit/*"
+            ],
+            "js": [
+                "/js/libs/jquery.min.js",
+                "/js/fixtures/admin/page/edit.js"
             ],
             "run_at": "document_end"
         }
     ],
     "web_accessible_resources": [
-        "images/logo19.png",
-        "images/logo38.png",
-        "images/logo48.png",
-        "images/logo144.png",
+        "js/libs/dataTables/Russian.json",
+        "styles/libs/bootstrap.dataTables.css",
+        "styles/libs/jquery.dataTables.min.css",
         
-        "/styles/cliend.ru-base.min.css",
-        "/styles/fonts.css",
-        "/styles/sites.css",
-        
-        "/styles/sites.less",
-        
-        "/js/jquery.min.js",
-        "/js/less.min.js",
-        "/js/sites.js",
-        
-        "/fonts/Roboto100.woff",
-        "/fonts/Roboto300.woff",
-        "/fonts/Roboto700.woff"
+        "styles/fixtures/admin/page/simple_pages.css"
     ]
 }
