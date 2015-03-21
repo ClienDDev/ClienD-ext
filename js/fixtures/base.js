@@ -3,3 +3,7 @@ function cliend_include_style(url){
         $('head').append('<style>'+data+'</style>');
     });
 }
+
+function cliend_include_js(url) {
+    $('head').append('<script src="'+url+'"></script>');
+}

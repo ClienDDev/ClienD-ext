@@ -3,7 +3,7 @@
     "name": "ClienD extension",
     "short_name": "ClienD-ext",
     "description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "atnartur",
     
     "icons": {
@@ -24,6 +24,7 @@
     
 	"permissions": [
         "tabs",
+        "activeTab",
         "declarativeContent",
 		"http://edu.tatar.ru/*",
 		"https://edu.tatar.ru/*",
@@ -75,13 +76,28 @@
                 "/js/fixtures/admin/page/edit.js"
             ],
             "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "https://edu.tatar.ru/admin/page/news/edit?news_block_id=*",
+                "http://edu.tatar.ru/admin/page/news/edit?news_block_id=*"
+            ],
+            "js": [
+                "/js/libs/jquery.min.js",
+                "/js/fixtures/base.js",
+                "/js/fixtures/admin/page/news/edit/extension.js"
+            ],
+            "run_at": "document_end"
         }
     ],
     "web_accessible_resources": [
+        "js/libs/jquery.min.js",
+        "js/libs/zeroclipboard/jquery.zeroclipboard.min.js",
+        "js/libs/zeroclipboard/ZeroClipboard.min.map",
+        "js/libs/zeroclipboard/ZeroClipboard.swf",
         "js/libs/dataTables/Russian.json",
         "styles/libs/bootstrap.dataTables.css",
         "styles/libs/jquery.dataTables.min.css",
-        
-        "styles/fixtures/admin/page/simple_pages.css"
+        "js/fixtures/admin/page/news/edit/page.js"
     ]
 }
