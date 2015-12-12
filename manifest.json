@@ -88,6 +88,18 @@
                 "/js/fixtures/admin/page/news/edit/extension.js"
             ],
             "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "https://edu.tatar.ru/school/journal*",
+                "http://edu.tatar.ru/school/journal*"
+            ],
+            "js": [
+                "/js/libs/jquery.min.js",
+                "/js/fixtures/base.js",
+                "/js/fixtures/school/journal/extension.js"
+            ],
+            "run_at": "document_end"
         }
     ],
     "web_accessible_resources": [
@@ -98,6 +110,9 @@
         "js/libs/dataTables/Russian.json",
         "styles/libs/bootstrap.dataTables.css",
         "styles/libs/jquery.dataTables.min.css",
-        "js/fixtures/admin/page/news/edit/page.js"
+        "js/fixtures/admin/page/news/edit/page.js",
+        "js/fixtures/school/journal/page.js",
+        "styles/fixtures/admin/page/simple_pages.css",
+        "images/loader.gif"
     ]
 }
