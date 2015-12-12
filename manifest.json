@@ -113,6 +113,7 @@
         "js/fixtures/admin/page/news/edit/page.js",
         "js/fixtures/school/journal/page.js",
         "styles/fixtures/admin/page/simple_pages.css",
+        "styles/fixtures/school/journal.css",
         "images/loader.gif"
     ]
 }
