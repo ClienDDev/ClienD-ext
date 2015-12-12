@@ -16,6 +16,7 @@ jQuery(document).ready(function(){
         $$('body').one('keyup', function(e){
             var key = String(e.which)
                 // оценки
+                .replace(48, 0).replace(96, 0)
                 .replace(49, 1).replace(97, 1)
                 .replace(50, 2).replace(98, 2)
                 .replace(51, 3).replace(99, 3)
@@ -30,7 +31,13 @@ jQuery(document).ready(function(){
 
             if (typeof Number(key) == 'number' && !isNaN(key)) {
                 key = Number(key);
-                $$('#markSelector table tr td:eq(0) a:eq(' + (key - 1) + ')').click();
+
+                if(key == 0)
+                    key = 5;
+                else
+                    key = key - 1;
+
+                $$('#markSelector table tr td:eq(0) a:eq(' + (key) + ')').click();
             }
             else{
                 console.log(000, key)
