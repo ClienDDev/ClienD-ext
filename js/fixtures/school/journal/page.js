@@ -9,7 +9,10 @@ var path_to_img = 'data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJ
 var ajax_status = false;
 
 $$(document).ready(function(){
+    $body = $$('html, body');
+    $body.animate({scrollTop: $$('.filter').offset().top}, 500);
     console.log('cliend extension loaded');
+
 
     $$('.e-journal td.mark').click(function(){
         if(ajax_status == false) {
@@ -56,32 +59,33 @@ $$(document).ready(function(){
         }
     });
 
-    $$('body').keyup(function(e){
-        if($$('.e-journal td.mark.focus').length == 1){
-            if(ajax_status == false) {
-                console.log(e.which);
+    $$('body').keydown(function(e){
+        if($$('.e-journal td.mark.focus').length == 1 && ajax_status == false &&
+            (e.which == 37 || e.which == 38 || e.which == 39 || e.which == 40)
+        ){
+            var td = $$('.e-journal td.mark.focus');
+            console.log(e.which, td);
+            switch (e.which) {
+                case 37: // влево
+                        td = td.prev();
+                    break;
+                case 38: // вверх
+                        td = td.closest('tr').prev().find('td:eq(' + td.index() + ')');
+                    break;
+                case 39: // вправо
+                        td = td.next();
+                    break;
+                case 40: // вниз
+                        td = td.closest('tr').next().find('td:eq(' + td.index() + ')');
+                    break;
+            }
 
-                var td = $$('.e-journal td.mark.focus');
+            if(td.hasClass('mark')) {
                 closeMark();
                 $$('.e-journal td.mark').removeClass('focus');
-
-                console.log(td);
-                switch (e.which) {
-                    case 37: // влево
-                            td = td.prev();
-                        break;
-                    case 38: // вверх
-                            td = td.closest('tr').prev().find('td.mark:eq(' + td.index() + ')');
-                        break;
-                    case 39: // вправо
-                            td = td.next();
-                        break;
-                    case 40: // вниз
-                            td = td.closest('tr').next().find('td.mark:eq(' + td.index() + ')');
-                        break;
-                }
-                console.log(td);
                 td.addClass('focus').click();
+                $body.animate({scrollTop: td.offset().top - 50}, 200);
+                e.preventDefault();
                 return false;
             }
         }
@@ -94,11 +98,9 @@ $$(document).ready(function(){
     Ajax.Responders.register({
         onCreate: function() {
             ajax_status = true;
-            console.log(ajax_status)
         },
         onComplete: function() {
             ajax_status = false;
-            console.log(ajax_status);
         }
     });
 });
