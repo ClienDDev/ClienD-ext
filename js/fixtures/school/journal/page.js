@@ -8,6 +8,7 @@ $$ = jQuery;
 var path_to_img = 'data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH+GkNyZWF0ZWQgd2l0aCBhamF4bG9hZC5pbmZvACH5BAAKAAAAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQACgABACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkEAAoAAgAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkEAAoAAwAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkEAAoABAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQACgAFACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQACgAGACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAAKAAcALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==';
 var ajax_status = false;
 
+
 $$(document).ready(function(){
     $body = $$('html, body');
 
@@ -16,15 +17,59 @@ $$(document).ready(function(){
 
     console.log('cliend extension loaded');
 
+    $$('body').on('keyup', function (e) {
+
+    });
 
     $$('.e-journal td.mark').click(function(){
         if(ajax_status == false) {
             $$('.e-journal td.mark').removeClass('focus');
             $$(this).addClass('focus');
 
-            $$('body').one('keyup', function (e) {
+
+        }
+    });
+
+
+
+    $$('body').keydown(function(e){
+        w = e.which;
+        if($$('.e-journal td.mark.focus').length == 1 && ajax_status == false) {
+
+            // навигация
+            if (w >= 37 && w <= 40) {
+                console.log(1111, w)
+                var td = $$('.e-journal td.mark.focus');
+                console.log(w, td);
+                switch (w) {
+                    case 37: // влево
+                        td = td.prev();
+                        break;
+                    case 38: // вверх
+                        td = td.closest('tr').prev().find('td:eq(' + td.index() + ')');
+                        break;
+                    case 39: // вправо
+                        td = td.next();
+                        break;
+                    case 40: // вниз
+                        td = td.closest('tr').next().find('td:eq(' + td.index() + ')');
+                        break;
+                }
+
+                if (td.hasClass('mark')) {
+                    closeMark();
+                    $$('.e-journal td.mark').removeClass('focus');
+                    $body.stop().animate({scrollTop: td.offset().top - 50}, 200);
+                    td.addClass('focus').click();
+                    e.preventDefault();
+                }
+            }
+
+            // выставление оценок
+            if((w >= 48 && w <= 53) || (w >= 96 && w <= 101) || w == 89 || w == 188) {
+                console.log(e.which);
                 var key = String(e.which)
-                // оценки
+                    // оценки
                     .replace(48, 0).replace(96, 0)
                     .replace(49, 1).replace(97, 1)
                     .replace(50, 2).replace(98, 2)
@@ -58,39 +103,6 @@ $$(document).ready(function(){
 
                     $$('#markSelector table tr td:eq(1) a:eq(' + key + ')').click();
                 }
-            });
-        }
-    });
-
-
-
-    $$('body').keydown(function(e){
-        if($$('.e-journal td.mark.focus').length == 1 && ajax_status == false &&
-            (e.which == 37 || e.which == 38 || e.which == 39 || e.which == 40)
-        ){
-            var td = $$('.e-journal td.mark.focus');
-            console.log(e.which, td);
-            switch (e.which) {
-                case 37: // влево
-                        td = td.prev();
-                    break;
-                case 38: // вверх
-                        td = td.closest('tr').prev().find('td:eq(' + td.index() + ')');
-                    break;
-                case 39: // вправо
-                        td = td.next();
-                    break;
-                case 40: // вниз
-                        td = td.closest('tr').next().find('td:eq(' + td.index() + ')');
-                    break;
-            }
-
-            if(td.hasClass('mark')) {
-                closeMark();
-                $$('.e-journal td.mark').removeClass('focus');
-                td.addClass('focus').click();
-                $body.stop().animate({scrollTop: td.offset().top - 50}, 200);
-                return false;
             }
         }
     });
