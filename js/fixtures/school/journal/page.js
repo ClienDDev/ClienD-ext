@@ -10,7 +10,10 @@ var ajax_status = false;
 
 $$(document).ready(function(){
     $body = $$('html, body');
-    $body.animate({scrollTop: $$('.filter').offset().top}, 500);
+
+    if($$(window).scrollTop() == 0)
+        $body.animate({scrollTop: $$('.filter').offset().top}, 500);
+
     console.log('cliend extension loaded');
 
 
@@ -59,6 +62,8 @@ $$(document).ready(function(){
         }
     });
 
+
+
     $$('body').keydown(function(e){
         if($$('.e-journal td.mark.focus').length == 1 && ajax_status == false &&
             (e.which == 37 || e.which == 38 || e.which == 39 || e.which == 40)
@@ -84,8 +89,7 @@ $$(document).ready(function(){
                 closeMark();
                 $$('.e-journal td.mark').removeClass('focus');
                 td.addClass('focus').click();
-                $body.animate({scrollTop: td.offset().top - 50}, 200);
-                e.preventDefault();
+                $body.stop().animate({scrollTop: td.offset().top - 50}, 200);
                 return false;
             }
         }
