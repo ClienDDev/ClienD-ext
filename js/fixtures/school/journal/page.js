@@ -71,13 +71,13 @@ $$(document).ready(function(){
                             td = td.prev();
                         break;
                     case 38: // вверх
-                            td = td.closest('tr').prev().find('td:eq(' + td.index() + ')');
+                            td = td.closest('tr').prev().find('td.mark:eq(' + td.index() + ')');
                         break;
                     case 39: // вправо
                             td = td.next();
                         break;
                     case 40: // вниз
-                            td = td.closest('tr').next().find('td:eq(' + td.index() + ')');
+                            td = td.closest('tr').next().find('td.mark:eq(' + td.index() + ')');
                         break;
                 }
                 console.log(td);
