@@ -17,16 +17,11 @@ $$(document).ready(function(){
 
     console.log('cliend extension loaded');
 
-    $$('body').on('keyup', function (e) {
-
-    });
 
     $$('.e-journal td.mark').click(function(){
         if(ajax_status == false) {
             $$('.e-journal td.mark').removeClass('focus');
             $$(this).addClass('focus');
-
-
         }
     });
 
@@ -58,15 +53,17 @@ $$(document).ready(function(){
 
                 if (td.hasClass('mark')) {
                     closeMark();
-                    $$('.e-journal td.mark').removeClass('focus');
                     $body.stop().animate({scrollTop: td.offset().top - 50}, 200);
-                    td.addClass('focus').click();
+                    td.click();
                     e.preventDefault();
                 }
             }
 
             // выставление оценок
             if((w >= 48 && w <= 53) || (w >= 96 && w <= 101) || w == 89 || w == 188) {
+                if($$('#markSelector').css('display') == 'none')
+                    $$('.e-journal td.mark.focus').click();
+
                 console.log(e.which);
                 var key = String(e.which)
                     // оценки
