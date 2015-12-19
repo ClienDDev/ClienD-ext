@@ -91,12 +91,12 @@ $$(document).ready(function(){
         window.cObj.update('<img src="'+path_to_img+'" style="margin: 0 auto;" title="Выставление оценки..." alt="Выставление оценки...">');
     });
 
-    $$.ajaxSetup({
-        start: function(){
+    Ajax.Responders.register({
+        onCreate: function() {
             ajax_status = true;
             console.log(ajax_status)
         },
-        complete: function(){
+        onComplete: function() {
             ajax_status = false;
             console.log(ajax_status);
         }
