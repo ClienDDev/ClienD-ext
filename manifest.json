@@ -4,8 +4,8 @@
     "short_name": "ClienD-ext",
     "description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
     "version": "1.1.0",
-    "author": "atnartur",
-    
+    "author": "ClienDDev",
+    "homepage_url": "http://ext.cliend.ru",
     "icons": {
         "19": "images/logo19.png",
         "38": "images/logo38.png",
