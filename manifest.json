@@ -12,16 +12,13 @@
         "48": "images/logo48.png",
         "144": "images/logo144.png"
     },
-    //"browser_action": {
     "page_action": {
         "default_icon": {
             "19": "images/logo19.png",
-            "38": "images/logo38.png"            // optional
+            "38": "images/logo38.png"          
         },
-        "default_title": "ClienD улучшил эту страницу"      // optional; shown in tooltip
-        //"default_popup": "pages/popup.html"        // optional
+        "default_title": "ClienD улучшил эту страницу"    
     },
-    
 	"permissions": [
         "tabs",
         "activeTab",
