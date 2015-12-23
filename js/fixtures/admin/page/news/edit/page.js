@@ -49,34 +49,62 @@ function php_trim(str, charlist) {
     return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }
 
-function cliend_get_post_id_from_url(url) {
-    url = url
-        .replace('https://', '')
-        .replace('http://', '')
-        .replace('vk.com/', '')
-        .replace('vk.com/', '');
-    
-    if (url.length === 0 || url.indexOf('wall') === -1) 
-        return false;
-    
-    var wall_position = url.indexOf('wall');
-    
-    url = url
-        .substring(wall_position)
-        .replace('?', '')
-        .replace('#', '')
-        .replace('.', '')
-        .replace('!', '')
-        .replace('<', '')
-        .replace('>', '');
-    
-    return url.replace('wall', '');
+
+function vk_post(post_id){
+    $.ajax({
+        url: "https://api.vk.com/method/wall.getById?" + $.param({posts: post_id}),
+        jsonp: "callback",
+        dataType: "jsonp",
+        success: function(res) {
+            if (!res.response) {
+                alert('Ошибка запроса ВК');
+                return false;
+            }
+            
+            var full_text = $.trim(res.response[0].text);
+            console.log(full_text);
+            full_text = full_text
+                .replace((/\B#[a-zA-Z0-9]+/ig), '').replace((/\B@[a-zA-Z0-9+_-]+/ig), '') // хештеги
+                .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3'); 
+            console.log(full_text);
+            
+            var full_text_arr = full_text.split('<br>')
+            var name = full_text_arr[0];
+            delete full_text_arr[0];
+            
+            var text = full_text_arr.join('<br>');
+            text = text.replace('<br><br><br>', '<br><br>').replace('___<br>', '');
+            text = php_trim(text,"<br>")
+            text = php_trim(text, "<br><br>");
+            
+            console.log(text);
+            
+            $('#news_title').val(name);
+            CKEDITOR.instances.news_lead.setData(text);
+            CKEDITOR.instances.news_text.setData(text);
+            
+            // обработка фотографии
+            if (res.response[0].attachment.type == 'photo') {
+                var photo_url = res.response[0].attachment.photo.src_xbig;
+                prompt('Это ссылка на фотографию.\nПри загрузке фотографии Вы можете вставить ее в системное окно Windows.', photo_url);
+                $('#contentwrap p a').click();
+            }
+            
+            return true;
+        },
+        error: function(xhr, status){
+            alert("Не удалось подключиться в vk.com. Возможно, нету доступа к серверам социальной сети\n(" + status + ")");
+        }
+    });
 }
-
-
 
 $(document).ready(function(){
     $('#content h2').after('<button id="cliend_vk_post_import">Добавить пост из ВКонтакте</button>');
+    var vk_post_id = $('body').data('vk_post_id');
+    
+    if (typeof vk_post_id !== 'undefined') 
+        vk_post(vk_post_id);
+    
     $('#cliend_vk_post_import').click(function(){
         var url = prompt('Введите URL поста ВКонтакте');
         
@@ -85,60 +113,14 @@ $(document).ready(function(){
             return false;
         }
             
-        var post_id = cliend_get_post_id_from_url(url);
+        var post_id = cliend_get_vk_post_id_from_url(url);
         
         if (post_id === false) {
-            alert('Ошибка при разборе адреса. Возможно URL непра');
+            alert('Ошибка при разборе адреса. Возможно URL неправильный');
             return false;
         }
         
-        $.ajax({
-            url: "https://api.vk.com/method/wall.getById?" + $.param({posts: post_id}),
-            jsonp: "callback",
-            dataType: "jsonp",
-            success: function(res) {
-                if (!res.response) {
-                    alert('Ошибка запроса ВК');
-                    return false;
-                }
-                
-                var full_text = $.trim(res.response[0].text);
-                console.log(full_text);
-                full_text = full_text
-                    .replace((/\B#[a-zA-Z0-9]+/ig), '').replace((/\B@[a-zA-Z0-9+_-]+/ig), '') // хештеги
-                    .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3'); 
-                console.log(full_text);
-                
-                var full_text_arr = full_text.split('<br>')
-                var name = full_text_arr[0];
-                delete full_text_arr[0];
-                
-                var text = full_text_arr.join('<br>');
-                text = text.replace('<br><br><br>', '<br><br>').replace('___<br>', '');
-                text = php_trim(text,"<br>")
-                text = php_trim(text, "<br><br>");
-                
-                console.log(text);
-                
-                $('#news_title').val(name);
-                CKEDITOR.instances.news_lead.setData(text);
-                CKEDITOR.instances.news_text.setData(text);
-                
-                // обработка фотографии
-                if (res.response[0].attachment.type == 'photo') {
-                    var photo_url = res.response[0].attachment.photo.src_xbig;
-                    prompt('Это ссылка на фотографию.\nПри загрузке фотографии Вы можете вставить ее в системное окно Windows.', photo_url);
-                    $('#contentwrap p a').click();
-                }
-                
-                return true;
-            },
-            error: function(xhr, status){
-                alert("Не удалось подключиться в vk.com. Возможно, нету доступа к серверам социальной сети\n(" + status + ")");
-            }
-        });
-        
-        return true;
+        vk_post(post_id);
     });
     
 })
