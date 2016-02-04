@@ -87,6 +87,18 @@
         },
         {
             "matches": [
+                "https://edu.tatar.ru/upload_crop/show/*",
+                "http://edu.tatar.ru/upload_crop/show/*"
+            ],
+            "js": [
+                "/js/libs/jquery.min.js",
+                "/js/common/base.js",
+                "/js/fixtures/upload_crop/show/extension.js"
+            ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
                 "https://edu.tatar.ru/school/journal*",
                 "http://edu.tatar.ru/school/journal*"
             ],
@@ -116,15 +128,22 @@
         "js/libs/zeroclipboard/ZeroClipboard.min.map",
         "js/libs/zeroclipboard/ZeroClipboard.swf",
         "js/libs/dataTables/Russian.json",
-        "styles/libs/bootstrap.dataTables.css",
-        "styles/libs/jquery.dataTables.min.css",
+        
+        "js/common/get_vk_post_id.js",
+        
         "js/fixtures/admin/page/news/edit/page.js",
         "js/fixtures/school/journal/page.js",
-        "js/common/get_vk_post_id.js",
+        "js/fixtures/upload_crop/show/page.js",
+        
         "js/vk/post_share.js",
         "js/vk/template.html",
+        
+        "styles/libs/bootstrap.dataTables.css",
+        "styles/libs/jquery.dataTables.min.css",
+        
         "styles/fixtures/admin/page/simple_pages.css",
         "styles/fixtures/school/journal.css",
+        
         "images/loader.gif"
     ]
 }
