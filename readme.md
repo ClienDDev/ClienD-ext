@@ -22,4 +22,4 @@
 ## Автор
 [Атнагулов Артур](http://atnartur.ru) <artur@clienddev.ru> при поддержке [ClienDDev team](http://clienddev.ru).
 
-[Сообщить о проблеме](https://github.com/ClienDDev/ClienD-ext/issues)
+[Сообщить о проблеме](https://github.com/ClienDDev/ClienD-ext/issues/new)
