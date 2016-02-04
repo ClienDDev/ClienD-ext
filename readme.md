@@ -24,8 +24,8 @@
 ## Автор
 Оригинальный код написан [Атнагуловым Артуром](http://atnartur.ru) <artur@clienddev.ru> при поддержке [ClienDDev team](http://clienddev.ru) под лицензией MIT.
 
-[Сайт расширения](http://ext.cliend.ru)
-[Страница в Chrome Web Store](https://chrome.google.com/webstore/detail/hehpfoecbadnfboagjkeifdfgajhlloh)
-[История изменений](https://github.com/ClienDDev/ClienD-ext/releases)
+[Сайт расширения](http://ext.cliend.ru) | 
+[Страница в Chrome Web Store](https://chrome.google.com/webstore/detail/hehpfoecbadnfboagjkeifdfgajhlloh) | 
+[История изменений](https://github.com/ClienDDev/ClienD-ext/releases) | 
 [Сообщить о проблеме](https://github.com/ClienDDev/ClienD-ext/issues/new)
 
