@@ -1,8 +1,10 @@
-# ClienD extension
+# [ClienD extension](http://ext.cliend.ru)
 
-Расширение для [Портала электронного образования Республики Татарстан](http://edu.tatar.ru). Вносит небольшие улучшения на портале (подробный список ниже).
+Расширение для [Портала электронного образования Республики Татарстан](http://edu.tatar.ru). Вносит небольшие улучшения на портале (подробный список ниже). Является подпроектом [ClienD](http://cliend.ru)
 
-## [Установка](http://ext.cliend.ru)
+- [Установка, подробные инструкции](http://ext.cliend.ru)
+- [Список идей, задач, багов](https://trello.com/b/LbwwbjwL/cliend-ext)
+- [Правила помощи проекту](https://github.com/ClienDDev/ClienD-ext/blob/dev/contribution.md)
 
 ## Функции
 
@@ -20,6 +22,6 @@
     - переход по таблице журнала с помощью стрелок на клавиатуре
     
 ## Автор
-[Атнагулов Артур](http://atnartur.ru) <artur@clienddev.ru> при поддержке [ClienDDev team](http://clienddev.ru).
+Оригинальный код написан [Атнагуловым Артуром](http://atnartur.ru) <artur@clienddev.ru> при поддержке [ClienDDev team](http://clienddev.ru) под лицензией MIT.
 
 [Сообщить о проблеме](https://github.com/ClienDDev/ClienD-ext/issues/new)
