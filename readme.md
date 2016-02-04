@@ -20,6 +20,6 @@
     - переход по таблице журнала с помощью стрелок на клавиатуре
     
 ## Автор
-[Атнагулов Артур] (http://atnartur.ru) <artur@clienddev.ru> при поддержке [ClienDDev team](http://clienddev.ru).
+[Атнагулов Артур](http://atnartur.ru) <artur@clienddev.ru> при поддержке [ClienDDev team](http://clienddev.ru).
 
-[Сообщить о проблеме] (https://github.com/atnartur/ClienD-proxy/issues)
+[Сообщить о проблеме](https://github.com/ClienDDev/ClienD-ext/issues)
