@@ -1,13 +1,8 @@
 function cliend_update_page_edit_button() {
-    if ($('#page_orig_id').val() != ''){
-        $('#page_orig_id').after('<a href="#" id="page_edit_button">Отредактировать эту страницу</a>');
-        $('#page_edit_button').click(function(){
-            var w = window.open('https://edu.tatar.ru/admin/page/simple_page/edit/' + $('#page_orig_id').val());
-            w.focus();
-        });
-    }
-    else
-        $('#page_edit_button').detach();
+    $('#page_edit_button').detach();
+
+    if ($('#page_orig_id').val() != '')
+        $('#page_orig_id').after('<a target="_blank" href="https://edu.tatar.ru/admin/page/simple_page/edit/' + $('#page_orig_id').val()+'" id="page_edit_button">Отредактировать эту страницу</a>');    
 }
 
 $(document).ready(function(){
