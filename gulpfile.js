@@ -6,12 +6,24 @@ var cssBase64 = require('gulp-css-base64');
 var jsonlint = require("gulp-jsonlint");
 var runSequence = require('run-sequence');
 
-gulp.task('less', function() {
-    return gulp.src('styles/**/*.less')
+gulp.task('less-cliend', function() {
+    return gulp.src('styles/cliend.less')
     	.pipe(less())
     	.pipe(nano())
     	.pipe(gulp.dest('dist/css/'));
 });
+
+gulp.task('less-other', function() {
+    return gulp.src([
+    	'styles/**/*.less',
+    	'!styles/cliend.less'
+    ])
+    	.pipe(less())
+    	.pipe(nano())
+    	.pipe(gulp.dest('dist/css/'));
+});
+
+gulp.task('less',['less-cliend', 'less-other']);
 
 gulp.task('datatables-css', function() {
     return gulp.src('libs/datatables/media/css/jquery.dataTables.css')
@@ -21,6 +33,13 @@ gulp.task('datatables-css', function() {
 });
 
 gulp.task('default', ['less', 'datatables-css']);
+
+gulp.task('watch', function() {
+    gulp.watch([
+    	'styles/**/*.less',
+    	'!styles/cliend.less'
+    ], ['less-other']);
+});
 
 gulp.task('manifest_lint', function(){
 	return gulp.src("./manifest.json")
