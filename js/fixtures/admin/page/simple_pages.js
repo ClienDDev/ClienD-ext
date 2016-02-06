@@ -16,7 +16,7 @@ $(document).ready(function(){
         $(this).after(newElement).remove();
     });
     
-    cliend_include_style(chrome.extension.getURL("libs/datatables/media/css/jquery.dataTables.min.css"));
+    cliend_include_style(chrome.extension.getURL("dist/css/jquery.dataTables.css"));
     cliend_include_style(chrome.extension.getURL("styles/fixtures/admin/page/simple_pages.css"));
     
     var functions = [];

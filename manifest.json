@@ -136,7 +136,7 @@
         "js/vk/post_share.js",
         "js/vk/template.html",
         
-        "libs/datatables/media/css/jquery.dataTables.min.css",
+        "dist/css/jquery.dataTables.css",
         
         "styles/fixtures/admin/page/simple_pages.css",
         "styles/fixtures/school/journal.css",
