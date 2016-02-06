@@ -43,11 +43,11 @@
                 "http://edu.tatar.ru/admin/page/simple_page*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
-                "/js/libs/dataTables/jquery.dataTables.min.js",
-                "/js/libs/jquery.fastLiveFilter.min.js",
-                "/js/libs/async.min.js",
-                "/js/fixtures/base.js",
+                "/libs/jquery/dist/jquery.min.js",
+                "/libs/datatables/media/js/jquery.dataTables.min.js",
+                "/libs/jquery-fastlivefilter/jquery.fastLiveFilter.js",
+                "/libs/async/dist/async.min.js",
+                "/js/common/base.js",
                 "/js/fixtures/admin/page/simple_pages.js"
             ],
             "run_at": "document_end"
@@ -58,7 +58,7 @@
                 "http://edu.tatar.ru/admin/page/edit/*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
+                "/libs/jquery/dist/jquery.min.js",
                 "/js/fixtures/admin/page/edit.js"
             ],
             "run_at": "document_end"
@@ -69,7 +69,7 @@
                 "http://edu.tatar.ru/admin/page/news_block*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
+                "/libs/jquery/dist/jquery.min.js",
                 "/js/fixtures/admin/page/news_block.js"
             ],
             "run_at": "document_end"
@@ -80,8 +80,8 @@
                 "http://edu.tatar.ru/admin/page/news/edit?news_block_id=*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
-                "/js/fixtures/base.js",
+                "/libs/jquery/dist/jquery.min.js",
+                "/js/common/base.js",
                 "/js/fixtures/admin/page/news/edit/extension.js"
             ],
             "run_at": "document_end"
@@ -92,7 +92,7 @@
                 "http://edu.tatar.ru/upload_crop/show/*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
+                "/libs/jquery/dist/jquery.min.js",
                 "/js/common/base.js",
                 "/js/fixtures/upload_crop/show/extension.js"
             ],
@@ -104,8 +104,8 @@
                 "http://edu.tatar.ru/school/journal*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
-                "/js/fixtures/base.js",
+                "/libs/jquery/dist/jquery.min.js",
+                "/js/common/base.js",
                 "/js/fixtures/school/journal/extension.js"
             ],
             "run_at": "document_end"
@@ -116,19 +116,16 @@
                 "http://vk.com/*"
             ],
             "js": [
-                "/js/libs/jquery.min.js",
-                "/js/fixtures/base.js",
+                "/libs/jquery/dist/jquery.min.js",
+                "/js/common/base.js",
                 "/js/vk/extension.js"
             ],
             "run_at": "document_end"
         }
     ],
     "web_accessible_resources": [
-        "js/libs/jquery.min.js",
-        "js/libs/zeroclipboard/jquery.zeroclipboard.min.js",
-        "js/libs/zeroclipboard/ZeroClipboard.min.map",
-        "js/libs/zeroclipboard/ZeroClipboard.swf",
-        "js/libs/dataTables/Russian.json",
+        "libs/jquery/dist/jquery.min.js",
+        "js/libs/datatables_russian.json",
         
         "js/common/get_vk_post_id.js",
         
@@ -139,8 +136,7 @@
         "js/vk/post_share.js",
         "js/vk/template.html",
         
-        "styles/libs/bootstrap.dataTables.css",
-        "styles/libs/jquery.dataTables.min.css",
+        "libs/datatables/media/css/jquery.dataTables.min.css",
         
         "styles/fixtures/admin/page/simple_pages.css",
         "styles/fixtures/school/journal.css",

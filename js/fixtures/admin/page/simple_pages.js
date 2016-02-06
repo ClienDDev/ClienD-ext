@@ -14,9 +14,9 @@ $(document).ready(function(){
         $(newElement).html($(thisTD).html());
         $(newElement).css('background-color', '#EEEEEE');
         $(this).after(newElement).remove();
-    })
+    });
     
-    cliend_include_style(chrome.extension.getURL("styles/libs/jquery.dataTables.min.css"));
+    cliend_include_style(chrome.extension.getURL("libs/datatables/media/css/jquery.dataTables.min.css"));
     cliend_include_style(chrome.extension.getURL("styles/fixtures/admin/page/simple_pages.css"));
     
     var functions = [];
@@ -50,7 +50,7 @@ $(document).ready(function(){
             searching: false, // убрали поиск
             aaSorting: [], // убрали сортировку сразу после загрузки
             language: {
-                url: chrome.extension.getURL("js/libs/dataTables/Russian.json")
+                url: chrome.extension.getURL("js/libs/datatables_russian.json")
             },
             paging:false
         });
