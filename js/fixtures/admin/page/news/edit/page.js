@@ -99,7 +99,11 @@ function vk_post(post_id){
 }
 
 $(document).ready(function(){
-    $('#content h2').after('<button id="cliend_vk_post_import">Добавить пост из ВКонтакте</button>');
+    $('#content h2').before(
+        '<div class="cliend ptop pbottom">'+
+            '<button id="cliend_vk_post_import" class="btn btn-primary pull-right">Добавить пост из ВКонтакте</button>'+
+        '</div>');
+    
     var vk_post_id = $('body').data('vk_post_id');
     
     if (typeof vk_post_id !== 'undefined') 

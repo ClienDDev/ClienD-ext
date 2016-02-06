@@ -28,11 +28,12 @@ function retrieveWindowVariables(variables) {
 $(document).ready(function(){
     if($('#content h2').text().trim() != 'Добавление новости')
         return false;
-    
-    cliend_include_js(chrome.extension.getURL("js/libs/jquery.min.js"));
+
+    cliend_include_js(chrome.extension.getURL("libs/jquery/dist/jquery.min.js"));
     cliend_include_js(chrome.extension.getURL("js/fixtures/admin/page/news/edit/page.js"));
     cliend_include_js(chrome.extension.getURL("js/common/get_vk_post_id.js"));
-    
+    cliend_include_style(chrome.extension.getURL("dist/css/cliend.css"));
+
     chrome.storage.local.get('vk_post_id', function(res){
         if (typeof res.vk_post_id !== 'undefined') {
             $('body').attr('data-vk_post_id', res.vk_post_id);
