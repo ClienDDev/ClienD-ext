@@ -2,3 +2,4 @@ libs
 node_modules
 dist
 *.cache
+build.zip

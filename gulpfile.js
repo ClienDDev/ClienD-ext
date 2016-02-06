@@ -49,9 +49,10 @@ gulp.task('manifest_lint', function(){
 
 gulp.task('zip', function(){
 	return gulp.src([
-		'./*',
+		'./**/*',
 		'!./node_modules/**/*',
 		'!./styles/**/*.less',
+        '!./gulpfile.js',
 		'!./package.json',
 		'!./bower.json',
 		'!./.bowerrc',
