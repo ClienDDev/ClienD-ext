@@ -18,7 +18,7 @@
             "19": "images/logo/19.png",
             "38": "images/logo/38.png"          
         },
-        "default_title": "Нажмите для настройки расширения ClienD",    
+        "default_title": "Улучшено расширением ClienD. Нажмите, чтобы узнать подробности",    
         "default_popup": "pages/popup.html"
     },
 	"permissions": [
