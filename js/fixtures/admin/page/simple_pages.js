@@ -16,6 +16,7 @@ $(document).ready(function(){
         $(this).after(newElement).remove();
     });
     
+    cliend_include_style(chrome.extension.getURL("dist/css/cliend.css"));
     cliend_include_style(chrome.extension.getURL("dist/css/jquery.dataTables.css"));
     cliend_include_style(chrome.extension.getURL("styles/fixtures/admin/page/simple_pages.css"));
     
@@ -42,7 +43,11 @@ $(document).ready(function(){
             $('#contentwrap table.table tbody').append(html);
         }
         $('#contentwrap .pages').hide();
-        $('#contentwrap .pages:eq(0)').after('<input type="text" id="table_search" placeholder="Поиск по страницам">');
+        $('#contentwrap .pages:eq(0)').after(
+            '<div class="cliend ptop">'+
+                '<input type="text" id="table_search" class="form-control" placeholder="Поиск по страницам">'+
+            '</div>'
+        );
         $('#table_search').fastLiveFilter('#contentwrap table.table tbody');
         
         // сортировка таблицы

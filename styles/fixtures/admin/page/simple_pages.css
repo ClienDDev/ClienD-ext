@@ -1,13 +1,3 @@
 table.table.dataTable tbody tr:hover{
     background:#ddd;
 }
-
-#table_search{
-    float:left;
-    padding:3px;
-    display:block;
-    width:90%;
-    margin:0 auto;
-    margin-bottom:3px;
-    margin-top: 10px;
-}
