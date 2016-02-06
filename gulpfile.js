@@ -9,7 +9,7 @@ var runSequence = require('run-sequence');
 gulp.task('less', function() {
     return gulp.src('styles/**/*.less')
     	.pipe(less())
-    	.pipe(nano()).
+    	.pipe(nano())
     	.pipe(gulp.dest('dist/css/'));
 });
 

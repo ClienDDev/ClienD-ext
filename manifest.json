@@ -58,6 +58,7 @@
                 "http://edu.tatar.ru/admin/page/edit/*"
             ],
             "js": [
+                "/js/common/base.js",
                 "/libs/jquery/dist/jquery.min.js",
                 "/js/fixtures/admin/page/edit.js"
             ],
@@ -136,6 +137,7 @@
         "js/vk/post_share.js",
         "js/vk/template.html",
         
+        "dist/css/cliend.css",
         "dist/css/jquery.dataTables.css",
         
         "styles/fixtures/admin/page/simple_pages.css",
