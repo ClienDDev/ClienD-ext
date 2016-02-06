@@ -103,7 +103,7 @@ $(document).ready(function(){
         '<div class="cliend ptop pbottom">'+
             '<button id="cliend_vk_post_import" class="btn btn-primary pull-right">Добавить пост из ВКонтакте</button>'+
         '</div>');
-    
+
     var vk_post_id = $('body').data('vk_post_id');
     
     if (typeof vk_post_id !== 'undefined') 
@@ -126,5 +126,7 @@ $(document).ready(function(){
         
         vk_post(post_id);
     });
-    
+
+    // Выделение галочек "Район" и "Республика"
+    $('#news_trans_region, #news_trans_global').click();
 })
