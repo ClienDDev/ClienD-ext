@@ -31,6 +31,8 @@
         "https://wifiauth.tatar.ru/*",
 		"http://wifiauth.tatar.ru/*",
         "http://cliend.ru/*",
+        "http://new.vk.com/*",
+        "https://new.vk.com/*",
         "http://vk.com/*",
         "https://vk.com/*"
 	],
@@ -115,7 +117,9 @@
         {
             "matches": [
                 "https://vk.com/*",
-                "http://vk.com/*"
+                "http://vk.com/*",
+                "https://new.vk.com/*",
+                "http://new.vk.com/*"
             ],
             "js": [
                 "/libs/jquery/dist/jquery.min.js",
