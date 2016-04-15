@@ -1,153 +1,178 @@
 {
-    "manifest_version": 2,
-    "name": "ClienD extension",
-    "short_name": "ClienD-ext",
-    "description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
-    "version": "1.2.1",
-    "author": "ClienDDev",
-    "homepage_url": "http://ext.cliend.ru",
-    "icons": {
-        "16": "images/logo/16.png",
-        "19": "images/logo/19.png",
-        "38": "images/logo/38.png",
-        "48": "images/logo/48.png",
-        "128": "images/logo/128.png"
-    },
-    "page_action": {
-        "default_icon": {
-            "19": "images/logo/19.png",
-            "38": "images/logo/38.png"          
-        },
-        "default_title": "Улучшено расширением ClienD. Нажмите, чтобы узнать подробности",    
-        "default_popup": "pages/popup.html"
-    },
+	"manifest_version": 2,
+	"name": "ClienD extension",
+	"short_name": "ClienD-ext",
+	"description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
+	"version": "1.2.1",
+	"author": "ClienDDev",
+	"homepage_url": "http://ext.cliend.ru",
+	"icons": {
+		"16": "images/logo/16.png",
+		"19": "images/logo/19.png",
+		"38": "images/logo/38.png",
+		"48": "images/logo/48.png",
+		"128": "images/logo/128.png"
+	},
+	"page_action": {
+		"default_icon": {
+			"19": "images/logo/19.png",
+			"38": "images/logo/38.png"          
+		},
+		"default_title": "Улучшено расширением ClienD. Нажмите, чтобы узнать подробности",    
+		"default_popup": "pages/popup.html"
+	},
 	"permissions": [
-        "storage",
-        "tabs",
-        "activeTab",
-        "declarativeContent",
+		"storage",
+		"tabs",
+		"activeTab",
+		"declarativeContent",
 		"http://edu.tatar.ru/*",
 		"https://edu.tatar.ru/*",
-        "https://wifiauth.tatar.ru/*",
+		"https://wifiauth.tatar.ru/*",
 		"http://wifiauth.tatar.ru/*",
-        "http://cliend.ru/*",
-        "http://new.vk.com/*",
-        "https://new.vk.com/*",
-        "http://vk.com/*",
-        "https://vk.com/*"
+		"http://cliend.ru/*",
+		"http://new.vk.com/*",
+		"https://new.vk.com/*",
+		"http://vk.com/*",
+		"https://vk.com/*"
 	],
-    "background": {
-        "scripts": ["js/bg.js"]
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://edu.tatar.ru/admin/page/simple_page*",
-                "http://edu.tatar.ru/admin/page/simple_page*"
-            ],
-            "js": [
-                "/libs/jquery/dist/jquery.min.js",
-                "/libs/datatables/media/js/jquery.dataTables.min.js",
-                "/libs/jquery-fastlivefilter/jquery.fastLiveFilter.js",
-                "/libs/async/dist/async.min.js",
-                "/js/common/base.js",
-                "/js/fixtures/admin/page/simple_pages.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [
-                "https://edu.tatar.ru/admin/page/edit/*",
-                "http://edu.tatar.ru/admin/page/edit/*"
-            ],
-            "js": [
-                "/js/common/base.js",
-                "/libs/jquery/dist/jquery.min.js",
-                "/js/fixtures/admin/page/edit.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [
-                "https://edu.tatar.ru/admin/page/news_block*",
-                "http://edu.tatar.ru/admin/page/news_block*"
-            ],
-            "js": [
-                "/libs/jquery/dist/jquery.min.js",
-                "/js/fixtures/admin/page/news_block.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [
-                "https://edu.tatar.ru/admin/page/news/edit?news_block_id=*",
-                "http://edu.tatar.ru/admin/page/news/edit?news_block_id=*"
-            ],
-            "js": [
-                "/libs/jquery/dist/jquery.min.js",
-                "/js/common/base.js",
-                "/js/fixtures/admin/page/news/edit/extension.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [
-                "https://edu.tatar.ru/upload_crop/show/*",
-                "http://edu.tatar.ru/upload_crop/show/*"
-            ],
-            "js": [
-                "/libs/jquery/dist/jquery.min.js",
-                "/js/common/base.js",
-                "/js/fixtures/upload_crop/show/extension.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [
-                "https://edu.tatar.ru/school/journal*",
-                "http://edu.tatar.ru/school/journal*"
-            ],
-            "js": [
-                "/libs/jquery/dist/jquery.min.js",
-                "/js/common/base.js",
-                "/js/fixtures/school/journal/extension.js"
-            ],
-            "run_at": "document_end"
-        },
-        {
-            "matches": [
-                "https://vk.com/*",
-                "http://vk.com/*",
-                "https://new.vk.com/*",
-                "http://new.vk.com/*"
-            ],
-            "js": [
-                "/libs/jquery/dist/jquery.min.js",
-                "/js/common/base.js",
-                "/js/vk/extension.js"
-            ],
-            "run_at": "document_end"
-        }
-    ],
-    "web_accessible_resources": [
-        "libs/jquery/dist/jquery.min.js",
-        "js/libs/datatables_russian.json",
-        
-        "js/common/get_vk_post_id.js",
-        
-        "js/fixtures/admin/page/news/edit/page.js",
-        "js/fixtures/school/journal/page.js",
-        "js/fixtures/upload_crop/show/page.js",
-        
-        "js/vk/post_share.js",
-        "js/vk/template.html",
-        
-        "dist/css/cliend.css",
-        "dist/css/jquery.dataTables.css",
-        
-        "styles/fixtures/admin/page/simple_pages.css",
-        "styles/fixtures/school/journal.css",
-        
-        "images/loader.gif"
-    ]
+	"background": {
+		"scripts": ["js/bg.js"]
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://edu.tatar.ru/admin/page/simple_page*",
+				"http://edu.tatar.ru/admin/page/simple_page*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/libs/datatables/media/js/jquery.dataTables.min.js",
+				"/libs/jquery-fastlivefilter/jquery.fastLiveFilter.js",
+				"/libs/async/dist/async.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/admin/page/simple_pages.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://edu.tatar.ru/admin/page/edit/*",
+				"http://edu.tatar.ru/admin/page/edit/*"
+			],
+			"js": [
+				"/js/common/base.js",
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/fixtures/admin/page/edit.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://edu.tatar.ru/admin/page/news_block*",
+				"http://edu.tatar.ru/admin/page/news_block*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/admin/page/news_block.js"
+			],
+			"run_at": "document_end"
+		},
+		{	
+			"matches": [
+				"https://edu.tatar.ru/admin/auth/logon*",
+				"http://edu.tatar.ru/admin/auth/logon*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/admin/auth/logon.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://edu.tatar.ru/admin/page/news/edit?news_block_id=*",
+				"http://edu.tatar.ru/admin/page/news/edit?news_block_id=*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/admin/page/news/edit/extension.js"
+			],
+			"run_at": "document_end"
+		},	
+		{
+			"matches": [
+				"https://edu.tatar.ru/admin/page/news?news_block_id=*",
+				"http://edu.tatar.ru/admin/page/news?news_block_id=*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/admin/page/news_block_page.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://edu.tatar.ru/upload_crop/show/*",
+				"http://edu.tatar.ru/upload_crop/show/*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/upload_crop/show/extension.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://edu.tatar.ru/school/journal*",
+				"http://edu.tatar.ru/school/journal*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/fixtures/school/journal/extension.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"https://vk.com/*",
+				"http://vk.com/*",
+				"https://new.vk.com/*",
+				"http://new.vk.com/*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/common/base.js",
+				"/js/vk/extension.js"
+			],
+			"run_at": "document_end"
+		}
+	],
+	"web_accessible_resources": [
+		"libs/jquery/dist/jquery.min.js",
+		"js/libs/datatables_russian.json",
+		
+		"js/common/get_vk_post_id.js",
+		
+		"js/fixtures/admin/page/news/edit/page.js",
+		"js/fixtures/school/journal/page.js",
+		"js/fixtures/upload_crop/show/page.js",
+		
+		"js/vk/post_share.js",
+		"js/vk/template.html",
+		
+		"dist/css/cliend.css",
+		"dist/css/jquery.dataTables.css",
+		
+		"styles/fixtures/admin/page/simple_pages.css",
+		"styles/fixtures/school/journal.css",
+		
+		"images/loader.gif"
+	]
 }
