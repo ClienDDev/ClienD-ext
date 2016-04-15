@@ -67,6 +67,8 @@ function vk_post(post_id){
                 .replace((/\B#[a-zA-Z0-9]+/ig), '').replace((/\B@[a-zA-Z0-9+_-]+/ig), '') // хештеги
                 .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3'); 
             console.log(full_text);
+
+            $('#news_source').val('http://vk.com/wall' + res.response[0].from_id + '_' + res.response[0].id);
             
             var full_text_arr = full_text.split('<br>')
             var name = full_text_arr[0];
