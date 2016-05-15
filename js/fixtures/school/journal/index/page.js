@@ -29,7 +29,6 @@ $$(document).ready(function(){
     $$('body').keydown(function(e){
         w = e.which;
         if($$('.e-journal td.mark.focus').length == 1 && ajax_status == false) {
-
             // навигация
             if (w >= 37 && w <= 40) {
                 console.log(1111, w)
@@ -59,7 +58,7 @@ $$(document).ready(function(){
             }
 
             // выставление оценок
-            if((w >= 48 && w <= 53) || (w >= 96 && w <= 101) || w == 89 || w == 188) {
+            if((w >= 48 && w <= 53) || (w >= 96 && w <= 101) || w == 89 || w == 188 || w == 219) {
                 if($$('#markSelector').css('display') == 'none')
                     $$('.e-journal td.mark.focus').click();
 
@@ -75,7 +74,8 @@ $$(document).ready(function(){
 
                     // отметки присутствия
                     .replace(89, 'н')
-                    .replace(188, 'б');
+                    .replace(188, 'б')
+                    .replace(219, 'х');
 
                 console.log('key', key, typeof Number(key) == 'number');
 
@@ -95,6 +95,9 @@ $$(document).ready(function(){
                         key = 0;
                     if (key == 'б')
                         key = 1;
+                    if (key == 'х')
+                        key = 2;
+                    
                     console.log(key, $$('#markSelector table tr td:eq(1) a:eq(' + key + ')'))
 
                     $$('#markSelector table tr td:eq(1) a:eq(' + key + ')').click();
