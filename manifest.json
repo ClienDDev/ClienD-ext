@@ -135,7 +135,7 @@
 			"js": [
 				"/libs/jquery/dist/jquery.min.js",
 				"/js/common/base.js",
-				"/js/fixtures/school/journal/extension.js"
+				"/js/fixtures/school/journal/index/extension.js"
 			],
 			"run_at": "document_end"
 		},
@@ -161,7 +161,7 @@
 		"js/common/get_vk_post_id.js",
 		
 		"js/fixtures/admin/page/news/edit/page.js",
-		"js/fixtures/school/journal/page.js",
+		"js/fixtures/school/journal/index/page.js",
 		"js/fixtures/upload_crop/show/page.js",
 		
 		"js/vk/post_share.js",
