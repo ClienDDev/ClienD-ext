@@ -12,8 +12,7 @@ var ajax_status = false;
 $$(document).ready(function(){
     $body = $$('html, body');
 
-    if($$(window).scrollTop() == 0)
-        $body.animate({scrollTop: $$('.filter').offset().top}, 500);
+    cliend_scroll_to_main();
 
     console.log('cliend extension loaded');
 
