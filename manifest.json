@@ -141,6 +141,17 @@
 		},
 		{
 			"matches": [
+				"https://edu.tatar.ru/school/journal/lesson-edit/*",
+				"http://edu.tatar.ru/school/journal/lesson-edit/*"
+			],
+			"js": [
+				"/libs/jquery/dist/jquery.min.js",
+				"/js/fixtures/school/journal/lesson-edit.js"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
 				"https://vk.com/*",
 				"http://vk.com/*",
 				"https://new.vk.com/*",
