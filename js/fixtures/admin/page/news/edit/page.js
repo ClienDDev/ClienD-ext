@@ -65,7 +65,9 @@ function vk_post(post_id){
             console.log(full_text);
             full_text = full_text
                 .replace((/\B#[a-zA-Z0-9]+/ig), '').replace((/\B@[a-zA-Z0-9+_-]+/ig), '') // хештеги
-                .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3'); 
+                .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3') // ссылки на людей
+                .replace(/(\[(club[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3');  // ссылки на группы
+                
             console.log(full_text);
 
             $('#news_source').val('http://vk.com/wall' + res.response[0].from_id + '_' + res.response[0].id);
