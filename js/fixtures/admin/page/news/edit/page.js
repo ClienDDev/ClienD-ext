@@ -60,6 +60,8 @@ function vk_post(post_id){
                 alert('Ошибка запроса ВК');
                 return false;
             }
+
+            console.log(res);
             
             var full_text = $.trim(res.response[0].text);
             console.log(full_text);
@@ -87,9 +89,15 @@ function vk_post(post_id){
             CKEDITOR.instances.news_lead.setData(text);
             CKEDITOR.instances.news_text.setData(text);
             
+            var photo_url;
+
             // обработка фотографии
-            if (res.response[0].attachment.type == 'photo') {
-                var photo_url = res.response[0].attachment.photo.src_xbig;
+            if (res.response[0].attachment.type == 'photo') 
+                photo_url = res.response[0].attachment.photo.src_xbig;
+            if (res.response[0].attachment.type == 'album') 
+                photo_url = res.response[0].attachment.album.thumb.src_xbig;
+
+            if(typeof photo_url !== 'undefined'){
                 prompt('Это ссылка на фотографию.\nПри загрузке фотографии Вы можете вставить ее в системное окно Windows.', photo_url);
                 $('#contentwrap p a').click();
             }
