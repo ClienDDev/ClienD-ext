@@ -90,8 +90,14 @@ function php_trim(str, charlist) {
                 console.log(text);
 
                 $('#news_title').val(name);
-                CKEDITOR.instances.news_lead.setData(text);
-                CKEDITOR.instances.news_text.setData(text);
+                
+                var textInterval = setInterval(() => {
+                    if (typeof CKEDITOR.instances.news_lead !== 'undefined' && typeof CKEDITOR.instances.news_text !== 'undefined') {
+                        clearInterval(textInterval);
+                        CKEDITOR.instances.news_lead.setData(text);
+                        CKEDITOR.instances.news_text.setData(text);
+                    }
+                }, 100);
 
                 var photo_url;
 

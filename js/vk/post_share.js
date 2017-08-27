@@ -28,7 +28,7 @@
 				if($container.length == 1){
 					clearInterval(interval);
 					
-					$container.find('#like_share_send').after($('#cliend_share').html());
+					$('#like_share_send:visible').after($('#cliend_share').html());
 					
 					$container.find('#cliend_share_button').click(function(){
 						window.open('https://edu.tatar.ru/admin/page/news_block#vk_post_id=' + post_id);
