@@ -16,7 +16,7 @@
 			if(location.href.indexOf('vk.com/wall') !== -1) // для страницы записи (пример: https://vk.com/wall-413099_1965)
 				post_href = location.href;
 			else // для остальных случаев (стена группы)
-				post_href = $(this).closest('.post.page_block').find('.post_header .post_date a.post_link').attr('href');
+				post_href = $(this).closest('.post').find('.post_header .post_date a.post_link').attr('href');
 				// post_href = $(this).closest('.post_info').find('.replies small a').attr('href');
 			
 			console.log(post_href);
