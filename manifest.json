@@ -133,7 +133,6 @@
 				"http://edu.tatar.ru/school/journal*"
 			],
 			"js": [
-//				"/libs/jquery/dist/jquery.min.js",
 				"/js/common/base.js",
 				"/js/fixtures/school/journal/index/extension.js"
 			],
