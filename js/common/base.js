@@ -1,16 +1,18 @@
 function cliend_include_style(url){
-	// простое подключение в head не работает почему-то
-	$.get(url, function(res){
-		$('head').append('<style>'+res+'</style>');
-	})
+    var link = document.createElement('link');
+    link.href = url;
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
 }
 
 function cliend_include_js(url) {
-    $('head').append('<script src="'+url+'"></script>');
+    var script = document.createElement('script');
+    script.src = url;
+    document.head.appendChild(script); //or something of the like
 }
 
 function cliend_save_vk_post_id(){
-	if (location.hash !== '') {
+	  if (location.hash !== '') {
         var post_id = location.hash.replace('#vk_post_id=', '');
         chrome.storage.local.set({'vk_post_id': post_id});
     }
