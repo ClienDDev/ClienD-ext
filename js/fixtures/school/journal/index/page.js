@@ -88,7 +88,6 @@
 
                         $('#markSelector table tr td:eq(0) a:eq(' + (key) + ')').click();
                     } else {
-                        console.log(000, key)
                         if (key == 'н')
                             key = 0;
                         if (key == 'б')
