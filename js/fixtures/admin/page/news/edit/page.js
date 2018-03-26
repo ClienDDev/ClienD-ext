@@ -50,48 +50,49 @@ function php_trim(str, charlist) {
 }
 
 (function($) {
-
-
+    const EOL = '\n';
     function vk_post(post_id) {
         $.ajax({
             url: "https://api.vk.com/method/wall.getById?" + $.param({
-                posts: post_id
+                posts: post_id,
+                v: 5.73
             }),
             jsonp: "callback",
             dataType: "jsonp",
             success: function(res) {
+                console.log(res);
                 if (!res.response) {
                     alert('Ошибка запроса ВК');
                     return false;
                 }
 
-                console.log(res);
-
-                var full_text = $.trim(res.response[0].text);
-                console.log(full_text);
-                full_text = full_text
+                let full_text = res.response[0].text
+                    .trim()
                     .replace((/\B#[a-zA-Z0-9]+/ig), '').replace((/\B@[a-zA-Z0-9+_-]+/ig), '') // хештеги
-                .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3') // ссылки на людей
-                .replace(/(\[(club[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3'); // ссылки на группы
-
-                console.log(full_text);
+                    .replace(/(\[(id[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3') // ссылки на людей
+                    .replace(/(\[(club[0-9]+)\|([A-Za-z_!А-ЯЁа-яё\s]+)\])/ig, '$3'); // ссылки на группы
 
                 $('#news_source').val('http://vk.com/wall' + res.response[0].from_id + '_' + res.response[0].id);
 
-                var full_text_arr = full_text.split('<br>')
-                var name = full_text_arr[0];
+                let full_text_arr = full_text.split(EOL);
+                console.log('text array', full_text_arr);
+
+                let name = full_text_arr[0]; // вытаскиванием название новости (первая строчка из текста ВК)
                 delete full_text_arr[0];
 
-                var text = full_text_arr.join('<br>');
-                text = text.replace('<br><br><br>', '<br><br>').replace('___<br>', '');
-                text = php_trim(text, "<br>")
-                text = php_trim(text, "<br><br>");
+                console.log('name', name);
 
-                console.log(text);
+                let text = full_text_arr
+                    .join(EOL) // собираем остальной текст поста
+                    .replace(EOL + EOL, EOL) // заменяем два переноса на один
+                    .trim() // убираем лишнее
+                    .replace(new RegExp(EOL, 'g'), '<br>'); // заменяем разделитель строки на перенос из HTML
+
+                console.log('final text', text);
 
                 $('#news_title').val(name);
                 
-                var textInterval = setInterval(() => {
+                let textInterval = setInterval(() => {
                     if (typeof CKEDITOR.instances.news_lead !== 'undefined' && typeof CKEDITOR.instances.news_text !== 'undefined') {
                         clearInterval(textInterval);
                         CKEDITOR.instances.news_lead.setData(text);
@@ -99,17 +100,26 @@ function php_trim(str, charlist) {
                     }
                 }, 100);
 
-                var photo_url;
+                const attachments = res.response[0].attachments.filter(x => x.type === 'photo');
+                if (attachments.length === 0) {
+                    console.error('Нет приложенных фотографий к этому посту');
+                    return;
+                }
 
-                // обработка фотографии
-                if (res.response[0].attachment.type == 'photo')
-                    photo_url = res.response[0].attachment.photo.src_xbig;
-                if (res.response[0].attachment.type == 'album')
-                    photo_url = res.response[0].attachment.album.thumb.src_xbig;
+                const attachment = attachments[0];
+                const allSizes = Object.keys(attachment.photo) // берем все параметры объефото
+                    .filter(x => x.indexOf('photo_') !== -1) // выбираем всевозможные размеры фото
+                    .map(x => parseInt(x.replace('photo_', ''))) // получаем их числовые значения
+                    .sort(); // сортируем
+
+                const size = allSizes[0]; // берем максимальный размер
+
+                const photo_url = attachment.photo['photo_' + size]; // достаем ссылку
 
                 if (typeof photo_url !== 'undefined') {
-                    prompt('Это ссылка на фотографию.\nПри загрузке фотографии Вы можете вставить ее в системное окно Windows.', photo_url);
-                    $('#contentwrap p a').click();
+                    // открываем диалог вставки фотографии только если пользователь нажал на ОК (Enter)
+                    if (prompt('Это ссылка на фотографию.\nПри загрузке фотографии Вы можете вставить ее в системное окно Windows.', photo_url))
+                        $('#contentwrap p a').click();
                 }
 
                 return true;
