@@ -13,8 +13,8 @@
         var $ = window.jQuery;
         
         function start(){
-			$('a.post_share').unbind('click').click(function(){
-				console.log('cliend: click')
+			$('a.like_btn.share').unbind('click').click(function(){
+				console.log('cliend: click');
 				
 				var post_href;
 
