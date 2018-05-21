@@ -1,11 +1,13 @@
 (function($) {
+    const vkServiceAccessToken = '7d61f6ae7d61f6ae7d61f6aeb57d030ec377d617d61f6ae2662ffc58e155a1265ccf370';
     const EOL = '\n';
 
     function vk_post(post_id) {
         $.ajax({
             url: "https://api.vk.com/method/wall.getById?" + $.param({
                 posts: post_id,
-                v: 5.73
+                v: 5.73,
+                access_token: vkServiceAccessToken
             }),
             jsonp: "callback",
             dataType: "jsonp",
