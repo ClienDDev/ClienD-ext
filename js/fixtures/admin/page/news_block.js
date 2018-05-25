@@ -4,4 +4,4 @@
 	    if ($('body').html().indexOf('Not Found') !== -1)
 	    	location.href = '/';
 	});	
-})(jQuery)
+})(jQuery);

@@ -4,7 +4,6 @@
 
 $(document).ready(function(){
     chrome.storage.local.get('vk_post_id', function(res){
-    	console.log(res,  $('#contentwrap a:eq(1)'))
         if (typeof res.vk_post_id !== 'undefined') 
             location.href = $('#contentwrap a:eq(1)').attr('href');
     });

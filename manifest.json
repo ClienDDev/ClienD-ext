@@ -3,7 +3,7 @@
 	"name": "ClienD extension",
 	"short_name": "ClienD-ext",
 	"description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
-	"version": "1.2.10",
+	"version": "1.3.0",
 	"author": "ClienDDev",
 	"homepage_url": "http://ext.cliend.ru",
 	"icons": {
@@ -102,7 +102,19 @@
 				"/js/fixtures/admin/page/news/edit/extension.js"
 			],
 			"run_at": "document_end"
-		},	
+		},
+        {
+            "matches": [
+                "https://edu.tatar.ru/",
+                "http://edu.tatar.ru/"
+            ],
+            "js": [
+                "/libs/jquery/dist/jquery.min.js",
+                "/js/common/base.js",
+                "/js/fixtures/index.js"
+            ],
+            "run_at": "document_end"
+        },
 		{
 			"matches": [
 				"https://edu.tatar.ru/admin/page/news?news_block_id=*",
