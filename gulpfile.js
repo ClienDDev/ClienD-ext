@@ -4,68 +4,62 @@ var less = require('gulp-less');
 var zip = require('gulp-zip');
 var cssBase64 = require('gulp-css-base64');
 var jsonlint = require("gulp-jsonlint");
-var runSequence = require('run-sequence');
 
-gulp.task('less-cliend', function() {
+const lessCliend = function () {
     return gulp.src('styles/cliend.less')
-    	.pipe(less())
-    	.pipe(nano())
-    	.pipe(gulp.dest('dist/css/'));
-});
+        .pipe(less())
+        .pipe(nano())
+        .pipe(gulp.dest('dist/css/'));
+};
 
-gulp.task('less-other', function() {
+const lessOther = function () {
     return gulp.src([
-    	'styles/**/*.less',
-    	'!styles/cliend.less'
+        'styles/**/*.less',
+        '!styles/cliend.less'
     ])
-    	.pipe(less())
-    	.pipe(nano())
-    	.pipe(gulp.dest('dist/css/'));
-});
+        .pipe(less())
+        .pipe(nano())
+        .pipe(gulp.dest('dist/css/'));
+};
 
-gulp.task('less',['less-cliend', 'less-other']);
+exports.less = gulp.series(lessCliend, lessOther);
 
-gulp.task('datatables-css', function() {
+const datatablesCss = function () {
     return gulp.src('libs/datatables/media/css/jquery.dataTables.css')
-    	.pipe(cssBase64())
-   		.pipe(nano())
-   		.pipe(gulp.dest('dist/css/'));
-});
+        .pipe(cssBase64())
+        .pipe(nano())
+        .pipe(gulp.dest('dist/css/'));
+};
 
-gulp.task('default', ['less', 'datatables-css']);
+exports.default = gulp.parallel(exports.less, datatablesCss);
 
-gulp.task('watch', function() {
+exports.watch = function () {
     gulp.watch([
-    	'styles/**/*.less',
-    	'!styles/cliend.less'
+        'styles/**/*.less',
+        '!styles/cliend.less'
     ], ['less-other']);
-});
+};
 
-gulp.task('manifest_lint', function(){
-	return gulp.src("./manifest.json")
-	    .pipe(jsonlint())
-	    .pipe(jsonlint.reporter());
-})
+exports.manifestLint = function () {
+    return gulp.src("./manifest.json")
+        .pipe(jsonlint())
+        .pipe(jsonlint.reporter());
+};
 
-gulp.task('zip', function(){
-	return gulp.src([
-		'./**/*',
-		'!./node_modules/**/*',
+exports.zip = function () {
+    return gulp.src([
+        './**/*',
+        '!./node_modules/**/*',
         '!./node_modules',
-		'!./styles/**/*.less',
+        '!./styles/**/*.less',
         '!./gulpfile.js',
-		'!./package.json',
-		'!./bower.json',
-		'!./.bowerrc',
+        '!./package.json',
+        '!./bower.json',
+        '!./.bowerrc',
         '!./build.zip'
-	])
-		.pipe(zip('build.zip'))
-		.pipe(gulp.dest('./'));
-});
+    ])
+        .pipe(zip('build.zip'))
+        .pipe(gulp.dest('./'));
+};
 
-gulp.task('build', function(){
-    return runSequence(
-    	['default', 'manifest_lint'],
-		'zip'
-	);
-});
+exports.build = gulp.series(gulp.parallel(exports.default, exports.manifestLint), exports.zip);

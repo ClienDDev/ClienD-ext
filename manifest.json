@@ -3,7 +3,7 @@
 	"name": "ClienD extension",
 	"short_name": "ClienD-ext",
 	"description": "Расширение исправляет некоторые ошибки в интерфейсе сайта edu.tatar.ru и добавляет несколько функций к веб-приложению",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"author": "ClienDDev",
 	"homepage_url": "http://ext.cliend.ru",
 	"icons": {

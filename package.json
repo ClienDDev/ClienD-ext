@@ -4,6 +4,7 @@
   "description": "Расширение для [Портала электронного образования Республики Татарстан](http://edu.tatar.ru). Вносит небольшие улучшения на портале (подробный список ниже). Является подпроектом [ClienD](http://cliend.ru).",
   "main": "index.js",
   "scripts": {
+    "build": "./node_modules/gulp/bin/gulp.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,12 +18,11 @@
   },
   "homepage": "https://github.com/ClienDDev/ClienD-ext#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-css-base64": "^1.3.4",
     "gulp-cssnano": "^2.1.3",
-    "gulp-jsonlint": "^1.2.1",
-    "gulp-less": "^4.0.0",
-    "gulp-zip": "^4.1.0",
-    "run-sequence": "^2.2.1"
+    "gulp-jsonlint": "^1.3.0",
+    "gulp-less": "^4.0.1",
+    "gulp-zip": "^5.0.0"
   }
 }
